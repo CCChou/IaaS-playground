@@ -27,5 +27,5 @@ export FQDN=$(terraform show -json|jq -r '.values.root_module.resources[] | sele
 
 SSH to the EC2 host
 ```
-sssh ec2-user@$FQDN
+ssh ec2-user@$FQDN
 ```
