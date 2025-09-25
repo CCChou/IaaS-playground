@@ -1,4 +1,4 @@
-
+# RHEL 9
 variable "ami" {
   type    = string
   default = "ami-0705fe1e9a50e0d57"

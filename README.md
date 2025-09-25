@@ -2,10 +2,7 @@
 
 Based on AWS and Terraform to build a consistent environment for workshop, demo and etc.
 
-## Setup Credentials
+## Structure
 
-```
-export AWS_ACCESS_KEY_ID=[AWS_ACCESS_KEY_ID]
-export AWS_SECRET_ACCESS_KEY=[AWS_SECRET_ACCESS_KEY]
-```
-
+- bootstrap/ : Initialize the environment with S3 and DynamoDB for state control 
+- workshops/ : Divide into several scenario based workshop
