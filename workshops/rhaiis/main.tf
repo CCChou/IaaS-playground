@@ -38,12 +38,21 @@ resource "aws_security_group" "rhaiis_server_sg" {
   name = "rhaiis_server_sg"
 
   ingress = [{
+    description      = "Allow Dashboard"
+    from_port        = 3000
+    to_port          = 3001
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    prefix_list_ids  = []
+    security_groups  = []
+    self             = false
+    },
+    {
     description      = "Allow SSH"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
     prefix_list_ids  = []
     security_groups  = []
     self             = false
@@ -54,7 +63,6 @@ resource "aws_security_group" "rhaiis_server_sg" {
       to_port          = 8000
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
-      ipv6_cidr_blocks = ["::/0"]
       prefix_list_ids  = []
       security_groups  = []
       self             = false

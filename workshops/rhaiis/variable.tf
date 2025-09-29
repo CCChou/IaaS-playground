@@ -6,7 +6,7 @@ variable "ami" {
 
 variable "instance_type" {
   type    = string
-  default = "g6.xlarge"
+  default = "g6.2xlarge"
 }
 
 variable "ssh_public_key" {
