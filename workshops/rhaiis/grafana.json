@@ -1518,8 +1518,8 @@
       {
         "current": {
           "selected": false,
-          "text": "RedHatAI/Llama-3.2-1B-Instruct-FP8",
-          "value": "RedHatAI/Llama-3.2-1B-Instruct-FP8"
+          "text": "RedHatAI/Mistral-7B-Instruct-v0.3-GPTQ-4bit",
+          "value": "RedHatAI/Mistral-7B-Instruct-v0.3-GPTQ-4bit"
         },
         "datasource": {
           "type": "prometheus",
