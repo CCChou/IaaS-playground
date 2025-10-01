@@ -18,7 +18,7 @@ resource "aws_instance" "rhaiis_server" {
   instance_type          = var.instance_type
   key_name               = "rhaiis_server"
   vpc_security_group_ids = [aws_security_group.rhaiis_server_sg.id]
-  user_data              = file("${path.module}/nvidia-driver.sh")
+  user_data              = file("${path.module}/files/setup.sh")
 
   root_block_device {
     volume_size = 100
@@ -43,6 +43,7 @@ resource "aws_security_group" "rhaiis_server_sg" {
     to_port          = 3001
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
     prefix_list_ids  = []
     security_groups  = []
     self             = false
@@ -53,6 +54,7 @@ resource "aws_security_group" "rhaiis_server_sg" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
     prefix_list_ids  = []
     security_groups  = []
     self             = false
@@ -63,6 +65,7 @@ resource "aws_security_group" "rhaiis_server_sg" {
       to_port          = 8000
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
       prefix_list_ids  = []
       security_groups  = []
       self             = false

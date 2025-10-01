@@ -2,3 +2,7 @@
 .terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
+
+ansible-automation-platform-containerized-setup-*.tar.gz
+
+.DS_Store
