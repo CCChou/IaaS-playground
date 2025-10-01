@@ -10,11 +10,11 @@ terraform {
 }
 
 provider "aws" {
-  region = "ap-southeast-2"
+  region = var.region
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "iaas-playground-dennis"   
+  bucket = var.bucket_name
 
   tags = {
     Name        = "terraform-state"
