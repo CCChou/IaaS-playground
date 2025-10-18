@@ -18,3 +18,8 @@ variable "region" {
   type    = string
   default = "ap-southeast-2"
 }
+
+variable "counts" {
+  type    = number
+  default = 1
+}
