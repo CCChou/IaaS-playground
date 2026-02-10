@@ -1,36 +1,15 @@
-# Red Hat AI Inference Server Workshop
+# Red Hat AI Inference Server Module
 
-Create a nvidia driver ready EC2 for rhaiis workshop
+Create EC2 with installed nvidia driver and container toolkit.
 
-## Setup
+## Varaibles
 
-Export credential as environment variable
-```shell
-export AWS_ACCESS_KEY_ID=[AWS_ACCESS_KEY_ID]
-export AWS_SECRET_ACCESS_KEY=[AWS_SECRET_ACCESS_KEY]
-```
-
-Check the backend bucket name should mapping the bootstrap
-```shell
-vim variable.tf
-```
-
-Init the terraform environment
-```shell
-terraform init
-```
-
-Apply
-```shell
-terraform apply --auto-approve
-```
-
-Get the FQDN 
-```shell
-export FQDN=$(terraform show -json|jq -r '.values.root_module.resources[] | select(.type == "aws_instance") | .values.public_dns')
-```
-
-SSH to the EC2 host
-```shell
-ssh ec2-user@$FQDN
-```
+| Name | Description |
+| --- | --- |
+| name | 建立的 instance 名稱與 tag 名稱 |
+| ami | 指定要採用的 AMI 目前只測試過 ami-0705fe1e9a50e0d57 (RHEL 9) 與 ami-0ba8d27d35e9915fb (Ubuntu 24.04) |
+| os_version | 指定作業系統版本，以便腳本識別要採用哪個，目前只支援 rhel9 與 ubuntu2404，此參數要與上述 AMI 對應 |
+| instance_type | EC2 instance type |
+| ssh_public_key | 使用者 public key 方便後續登入系統使用 |
+| region | 指定地區 |
+| counts | 指定 instance 數量 |
