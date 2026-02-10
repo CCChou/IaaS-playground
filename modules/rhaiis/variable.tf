@@ -1,7 +1,19 @@
-# RHEL 9
+variable "name" {
+  type    = string
+  default = "rhaiis_server"
+}
+
+# RHEL 9 - ami-0705fe1e9a50e0d57
+# Ubuntu 24.04 - ami-0ba8d27d35e9915fb
 variable "ami" {
   type    = string
-  default = "ami-0705fe1e9a50e0d57"
+  default = "ami-0ba8d27d35e9915fb"
+}
+
+# Option rhel9, ubuntu2404
+variable "os_version" {
+  type = string
+  default = "ubuntu2404"
 }
 
 variable "instance_type" {

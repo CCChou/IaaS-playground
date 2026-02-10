@@ -18,7 +18,7 @@ resource "aws_instance" "rhaiis_server" {
   instance_type          = var.instance_type
   key_name               = "rhaiis_server"
   vpc_security_group_ids = [aws_security_group.rhaiis_server_sg.id]
-  user_data              = file("${path.module}/files/setup.sh")
+  user_data              = file("${path.module}/files/setup-${var.os_version}.sh")
   count                  = var.counts
 
   root_block_device {
@@ -26,17 +26,17 @@ resource "aws_instance" "rhaiis_server" {
   }
 
   tags = {
-    Name = "RHAIIS-Server"
+    Name = var.name
   }
 }
 
 resource "aws_key_pair" "rhaiis_server_keypair" {
-  key_name   = "rhaiis_server"
+  key_name   = var.name
   public_key = var.ssh_public_key
 }
 
 resource "aws_security_group" "rhaiis_server_sg" {
-  name = "rhaiis_server_sg"
+  name = "${var.name}_sg"
 
   ingress = [{
     description      = "Allow Dashboard"
@@ -81,7 +81,7 @@ resource "aws_security_group" "rhaiis_server_sg" {
   }
 
   tags = {
-    Name = "rhaiis_server_sg"
+    Name = "${var.name}_sg"
   }
 }
 
