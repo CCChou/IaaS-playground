@@ -3,7 +3,7 @@ variable "name" {
   default = "rhaiis_server"
 }
 
-# RHEL 9 - ami-0705fe1e9a50e0d57
+# RHEL 9 - ami-099fd0c9728cca0e5
 # Ubuntu 24.04 - ami-0ba8d27d35e9915fb
 variable "ami" {
   type    = string
@@ -34,4 +34,9 @@ variable "region" {
 variable "counts" {
   type    = number
   default = 1
+}
+
+variable "volume" {
+  type    = number
+  default = 100
 }

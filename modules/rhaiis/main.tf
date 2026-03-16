@@ -16,13 +16,13 @@ provider "aws" {
 resource "aws_instance" "rhaiis_server" {
   ami                    = var.ami
   instance_type          = var.instance_type
-  key_name               = "rhaiis_server"
+  key_name               = var.name
   vpc_security_group_ids = [aws_security_group.rhaiis_server_sg.id]
   user_data              = file("${path.module}/files/setup-${var.os_version}.sh")
   count                  = var.counts
 
   root_block_device {
-    volume_size = 100
+    volume_size = var.volume
   }
 
   tags = {
