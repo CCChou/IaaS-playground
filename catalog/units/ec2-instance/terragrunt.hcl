@@ -1,11 +1,3 @@
-locals {
-  defaults = {
-    cloud_init_parts   = ""
-    user_data          = ""
-    allow_self_ingress = true
-  }
-}
-
 include "root" {
   path = find_in_parent_folders("root.hcl")
 }

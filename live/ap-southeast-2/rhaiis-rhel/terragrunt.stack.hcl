@@ -1,4 +1,3 @@
-# 從 catalog 拉一個既有的 stack 當 base
 locals {
   os_version = "rhel9"
 }

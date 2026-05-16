@@ -1,4 +1,3 @@
-# 從 catalog 拉一個既有的 stack 當 base
 stack "k8s" {
   source = "${get_repo_root()}/catalog/stacks/k8s"
   path   = "k8s"
