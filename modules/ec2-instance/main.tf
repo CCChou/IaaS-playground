@@ -22,7 +22,6 @@ resource "aws_instance" "ec2_instance" {
   instance_type               = var.instance_type
   key_name                    = var.name
   vpc_security_group_ids      = [aws_security_group.ec2_instance_sg.id]
-  user_data                   = local.use_cloud_init ? null : var.user_data
   user_data_base64            = local.use_cloud_init ? data.cloudinit_config.setup[0].rendered : null
   user_data_replace_on_change = true
   count                       = var.counts

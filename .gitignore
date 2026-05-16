@@ -3,6 +3,7 @@
 terraform.tfstate
 terraform.tfstate.backup
 .terragrunt-cache
+.terragrunt-stack
 
 ansible-automation-platform-containerized-setup-*.tar.gz
 

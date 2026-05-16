@@ -21,15 +21,16 @@ Destroy infrastructure
 ## Repository structure
 - `modules/` reusable opentofu configuration files
 - `catalog` reusable terragrunt configuration files
-- `catalog/unit` resuable unit from modules
-- `catalog/stack` resuable stack from a set of units and compose as a workshop environments
+- `catalog/units` resuable unit from modules should mapping to each modules
+- `catalog/stacks` resuable stack from a set of units and compose as a workshop environments
 - `live/` the place for final configuration to apply
 - `live/region` the abstract layer for regional management
 - `live/region/workshop` the workshop layer for compose stack for real infrastructure needs
 
 ## Files description
-- `main.tf` define the modules main configs
+- `modules/main.tf` define the modules main configs
 - `variables.tf` define modules variables
 - `version.tf` define provider version
 - `root.hcl` define terragrunt reusable backend and state
 - `region.hcl`  define regional variables
+- `catalog/stacks/terragrunt.stack.hcl` define stack how to compose the units
