@@ -1,19 +1,21 @@
 # Project Structure
 
-## Folder
-- `modules/` reusable opentofu configuration files
-- `catalog` reusable terragrunt configuration files
-- `catalog/units` resuable unit from modules should mapping to each modules
-- `catalog/stacks` resuable stack from a set of units and compose as a workshop environments
-- `live/` the place for final configuration to apply
-- `live/region` the abstract layer for regional management
-- `live/region/workshop` the workshop layer for compose stack for real infrastructure needs
+## Folders
 
-## Files description
-- `modules/name/main.tf` define the modules main configs
-- `modules/name/variables.tf` define modules variables
-- `modules/name/version.tf` define provider version
-- `live/root.hcl` define terragrunt reusable backend and state
-- `live/region.hcl`  define regional variables
-- `catalog/stacks/name/terragrunt.stack.hcl` define unit to construct stack
-- `catalog/units/name/terragrunt.hcl` define module to be unit
+- `modules/` : reusable OpenTofu configuration files  
+- `catalog/` : reusable Terragrunt configuration files  
+- `catalog/units/` : one unit per module, 1-to-1 mapping with modules/ 
+- `catalog/stacks/` : composes a set of units into a workshop environment 
+- `live/` : final configurations to apply 
+- `live/{region}/` : regional abstraction layer 
+- `live/{region}/{workshop}/` : composes a stack for real infrastructure needs 
+
+## Files
+
+- `modules/{name}/main.tf` : module main configuration
+- `modules/{name}/variables.tf` : module input variables
+- `modules/{name}/version.tf` : provider version constraints
+- `catalog/units/{name}/terragrunt.hcl` : defines a unit referencing a module
+- `catalog/stacks/{name}/terragrunt.stack.hcl` : defines a stack composing units
+- `live/root.hcl` : reusable Terragrunt backend and remote state config
+- `live/{region}/region.hcl` : regional variables
