@@ -7,6 +7,7 @@ terraform {
 }
 
 inputs = {
+  name               = values.name
   ami                = values.ami
   instance_type      = values.instance_type
   volume             = values.volume
