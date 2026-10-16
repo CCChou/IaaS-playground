@@ -2,13 +2,19 @@
 
 ## Folders
 
-- `modules/` : reusable OpenTofu configuration files  
+- `modules/` : reusable OpenTofu configuration files, one cloud provider's resources per module
 - `catalog/` : reusable Terragrunt configuration files  
 - `catalog/units/` : one unit per module, 1-to-1 mapping with modules/ 
+- `catalog/scripts/{name}/` : cloud-init/startup scripts shared by a stack across cloud providers
 - `catalog/stacks/` : composes a set of units into a workshop environment 
 - `live/` : final configurations to apply 
-- `live/{region}/` : regional abstraction layer 
-- `live/{region}/{workshop}/` : composes a stack for real infrastructure needs 
+- `live/{cloud}/` : cloud provider abstraction layer (e.g. `aws`, `gcp`)
+- `live/{cloud}/{region}/` : regional abstraction layer 
+- `live/{cloud}/{region}/{workshop}/` : composes a stack for real infrastructure needs 
+
+Modules/units that are specific to a cloud provider are named after that provider's own
+resource (e.g. `ec2-instance` for AWS, `gce-instance` for GCP) so multiple providers can
+offer the same workshop side by side.
 
 ## Files
 
@@ -16,6 +22,7 @@
 - `modules/{name}/variables.tf` : module input variables
 - `modules/{name}/version.tf` : provider version constraints
 - `catalog/units/{name}/terragrunt.hcl` : defines a unit referencing a module
+- `catalog/scripts/{stack}/{file}` : a script referenced via `file()` from one or more stacks
 - `catalog/stacks/{name}/terragrunt.stack.hcl` : defines a stack composing units
-- `live/root.hcl` : reusable Terragrunt backend and remote state config
-- `live/{region}/region.hcl` : regional variables
+- `live/{cloud}/root.hcl` : reusable Terragrunt backend and remote state config for that cloud
+- `live/{cloud}/{region}/region.hcl` : regional variables
