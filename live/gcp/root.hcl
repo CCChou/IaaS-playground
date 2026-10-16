@@ -25,7 +25,9 @@ remote_state {
     if_exists = "overwrite"
   }
   config = {
-    bucket = "dennis-iaas-gcp-${local.gcp_region}"
-    prefix = "${path_relative_to_include()}/tofu.tfstate"
+    project  = get_env("GOOGLE_PROJECT")
+    location = local.gcp_region
+    bucket   = "dennis-iaas-gcp-${local.gcp_region}"
+    prefix   = "${path_relative_to_include()}/tofu.tfstate"
   }
 }

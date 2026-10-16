@@ -10,3 +10,4 @@ ansible-automation-platform-containerized-setup-*.tar.gz
 .DS_Store
 
 *.cred
+sa-key.json

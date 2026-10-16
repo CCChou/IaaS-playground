@@ -18,10 +18,6 @@ data "cloudinit_config" "setup" {
   }
 }
 
-data "google_compute_network" "default" {
-  name = "default"
-}
-
 resource "google_compute_instance" "gce_instance" {
   count        = var.counts
   name         = "${var.name}-${count.index}"
@@ -36,20 +32,21 @@ resource "google_compute_instance" "gce_instance" {
   }
 
   network_interface {
-    network = data.google_compute_network.default.self_link
+    network = var.network
     access_config {}
   }
 
   metadata = {
-    "ssh-keys"  = "${var.ssh_user}:${var.ssh_public_key}"
-    "user-data" = local.use_cloud_init ? data.cloudinit_config.setup[0].rendered : null
+    "ssh-keys"           = "${var.ssh_user}:${var.ssh_public_key}"
+    "user-data"          = local.use_cloud_init ? data.cloudinit_config.setup[0].rendered : null
+    "user-data-encoding" = local.use_cloud_init ? "base64" : null
   }
 
   scheduling {
     preemptible         = var.preemptible
-    automatic_restart   = var.preemptible || local.use_gpu ? false : true
+    automatic_restart   = !var.preemptible
     provisioning_model  = var.preemptible ? "SPOT" : "STANDARD"
-    on_host_maintenance = local.use_gpu ? "TERMINATE" : "MIGRATE"
+    on_host_maintenance = (var.preemptible || local.use_gpu) ? "TERMINATE" : "MIGRATE"
   }
 
   dynamic "guest_accelerator" {
@@ -64,19 +61,19 @@ resource "google_compute_instance" "gce_instance" {
 module "allow_outbound_all" {
   source = "../gcp-firewall-rule"
 
-  name                = "${var.name}-allow-outbound-all"
-  network             = data.google_compute_network.default.self_link
-  type                = "egress"
-  protocol            = "all"
-  target_tags         = [var.name]
-  destination_ranges  = ["0.0.0.0/0"]
+  name               = "${var.name}-allow-outbound-all"
+  network            = var.network
+  type               = "egress"
+  protocol           = "all"
+  target_tags        = [var.name]
+  destination_ranges = ["0.0.0.0/0"]
 }
 
 module "allow_inbound_ssh" {
   source = "../gcp-firewall-rule"
 
   name          = "${var.name}-allow-inbound-ssh"
-  network       = data.google_compute_network.default.self_link
+  network       = var.network
   type          = "ingress"
   protocol      = "tcp"
   ports         = ["22"]
@@ -89,7 +86,7 @@ module "allow_self_ingress" {
   source = "../gcp-firewall-rule"
 
   name        = "${var.name}-allow-self-ingress"
-  network     = data.google_compute_network.default.self_link
+  network     = var.network
   type        = "ingress"
   protocol    = "all"
   target_tags = [var.name]

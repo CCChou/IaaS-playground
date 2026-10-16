@@ -6,8 +6,18 @@ terraform {
   source = "${get_repo_root()}/modules//gce-instance"
 }
 
+dependency "default_network" {
+  config_path = "../default-network"
+
+  mock_outputs = {
+    self_link = "projects/mock-project/global/networks/mock"
+  }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "init"]
+}
+
 inputs = {
   name               = values.name
+  network            = dependency.default_network.outputs.self_link
   image              = values.image
   machine_type       = values.machine_type
   volume             = values.volume

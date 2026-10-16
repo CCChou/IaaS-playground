@@ -3,6 +3,11 @@ variable "name" {
   default = "gce_instance"
 }
 
+variable "network" {
+  description = "Self link of the VPC network to attach the instance and its firewall rules to"
+  type        = string
+}
+
 variable "image" {
   description = "Image in {project}/{family-or-image} form, e.g. ubuntu-os-cloud/ubuntu-2404-lts-amd64"
   type        = string
