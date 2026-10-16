@@ -8,9 +8,9 @@ stack "rhaiis" {
 
   values = {
     ami           = "ami-09e34074d412a97b2"
-    instance_type = "g6.xlarge"
+    instance_type = "g6e.2xlarge"
     volume        = 100
-    counts        = 2
+    counts        = 1
     os_version    = local.os_version
   }
 }

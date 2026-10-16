@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export KUBERNETES_VERSION=v1.35
+export KUBERNETES_VERSION=v1.36
 
 # disable swap for kubelet
 sudo swapoff -a

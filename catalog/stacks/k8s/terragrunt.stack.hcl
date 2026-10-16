@@ -17,11 +17,11 @@ unit "k8s" {
     cloud_init_parts = [
       {
         filename = "install-containerd.sh"
-        content  = file("${get_repo_root()}/catalog/stacks/k8s/files/install-containerd.sh")
+        content  = file("${get_repo_root()}/catalog/scripts/k8s/install-containerd.sh")
       },
       {
         filename = "install-kubeadm.sh"
-        content  = file("${get_repo_root()}/catalog/stacks/k8s/files/install-kubeadm.sh")
+        content  = file("${get_repo_root()}/catalog/scripts/k8s/install-kubeadm.sh")
       }
     ]
   }

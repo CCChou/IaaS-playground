@@ -17,7 +17,7 @@ unit "rhaiis" {
     cloud_init_parts = [
       {
         filename = "setup.sh"
-        content  = file("${get_repo_root()}/catalog/stacks/rhaiis/files/setup-${values.os_version}.sh")
+        content  = file("${get_repo_root()}/catalog/scripts/rhaiis/setup-${values.os_version}.sh")
       }
     ]
   }

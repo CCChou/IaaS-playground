@@ -4,7 +4,7 @@ stack "k8s" {
 
   values = {
     ami           = "ami-0765f9741eedf9c7b"
-    instance_type = "g6.xlarge"
+    instance_type = "g6.2xlarge"
     volume        = 100
     counts        = 2
   }
