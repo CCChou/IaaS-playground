@@ -41,7 +41,8 @@ resource "aws_key_pair" "ec2_instance_keypair" {
 }
 
 resource "aws_security_group" "ec2_instance_sg" {
-  name = "${var.name}_sg"
+  name   = "${var.name}_sg"
+  vpc_id = var.vpc_id
 
   tags = {
     Name = "${var.name}_sg"
