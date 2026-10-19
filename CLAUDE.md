@@ -15,3 +15,7 @@ see [目錄結構](https://github.com/CCChou/IaaS-playground/blob/main/docs/stru
 
 see [Getting Started](https://github.com/CCChou/IaaS-playground/blob/main/docs/command.md)
 
+## Git
+
+- Never `git push` without the user's explicit approval first. Committing is fine; always ask before pushing.
+
