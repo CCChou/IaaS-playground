@@ -12,7 +12,7 @@ dependency "default_network" {
   mock_outputs = {
     self_link = "projects/mock-project/global/networks/mock"
   }
-  mock_outputs_allowed_terraform_commands = ["validate", "plan", "init"]
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "init", "destroy"]
 }
 
 inputs = {
