@@ -3,7 +3,7 @@ stack "k8s" {
   path   = "k8s"
 
   values = {
-    ami           = "ami-0765f9741eedf9c7b"
+    ami           = "ami-0150847fe1b89b004"
     instance_type = "g6.xlarge"
     volume        = 100
     counts        = 2
