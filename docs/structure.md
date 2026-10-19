@@ -12,9 +12,11 @@
 - `live/{cloud}/{region}/` : regional abstraction layer 
 - `live/{cloud}/{region}/{workshop}/` : composes a stack for real infrastructure needs 
 
-Modules/units that are specific to a cloud provider are named after that provider's own
-resource (e.g. `ec2-instance` for AWS, `gce-instance` for GCP) so multiple providers can
-offer the same workshop side by side.
+Modules/units that are specific to a cloud provider are prefixed with that provider
+(`aws-ec2-instance`, `aws-default-vpc`, ...) so multiple providers can offer the same
+workshop side by side. GCP's modules are named after Google's own resource names
+(`gce-instance`, `gcp-default-network`, `gcp-firewall-rule`), which already read as
+provider-specific without needing a separate prefix.
 
 ## Files
 

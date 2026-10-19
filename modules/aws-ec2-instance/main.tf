@@ -49,7 +49,7 @@ resource "aws_security_group" "ec2_instance_sg" {
 }
 
 module "allow_outbound_all" {
-  source = "../sg-rule"
+  source = "../aws-sg-rule"
 
   security_group_id = aws_security_group.ec2_instance_sg.id
   type              = "egress"
@@ -60,7 +60,7 @@ module "allow_outbound_all" {
 }
 
 module "allow_inbound_ssh" {
-  source = "../sg-rule"
+  source = "../aws-sg-rule"
 
   security_group_id = aws_security_group.ec2_instance_sg.id
   type              = "ingress"
@@ -72,7 +72,7 @@ module "allow_inbound_ssh" {
 
 module "allow_self_ingress" {
   count  = var.allow_self_ingress ? 1 : 0
-  source = "../sg-rule"
+  source = "../aws-sg-rule"
 
   security_group_id        = aws_security_group.ec2_instance_sg.id
   type                     = "ingress"

@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "${get_repo_root()}/modules//ec2-instance"
+  source = "${get_repo_root()}/modules//aws-ec2-instance"
 }
 
 inputs = {

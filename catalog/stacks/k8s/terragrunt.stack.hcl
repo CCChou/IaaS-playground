@@ -1,10 +1,10 @@
 unit "default_vpc" {
-  source = "${get_repo_root()}/catalog/units/default-vpc"
+  source = "${get_repo_root()}/catalog/units/aws-default-vpc"
   path   = "default-vpc"
 }
 
 unit "k8s" {
-  source = "${get_repo_root()}/catalog/units/ec2-instance"
+  source = "${get_repo_root()}/catalog/units/aws-ec2-instance"
   path   = "k8s"
 
   values = {

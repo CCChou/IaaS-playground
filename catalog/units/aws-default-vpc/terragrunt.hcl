@@ -3,5 +3,5 @@ include "root" {
 }
 
 terraform {
-  source = "${get_repo_root()}/modules//sg"
+  source = "${get_repo_root()}/modules//aws-default-vpc"
 }
